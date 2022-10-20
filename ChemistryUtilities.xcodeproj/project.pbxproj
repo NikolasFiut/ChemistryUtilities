@@ -8,17 +8,23 @@
 
 /* Begin PBXBuildFile section */
 		AE824EB82901E61000680933 /* ChemistryUtilitiesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE824EB72901E61000680933 /* ChemistryUtilitiesApp.swift */; };
-		AE824EBA2901E61000680933 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE824EB92901E61000680933 /* ContentView.swift */; };
+		AE824EBA2901E61000680933 /* UtilitySelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE824EB92901E61000680933 /* UtilitySelectorView.swift */; };
 		AE824EBC2901E61200680933 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE824EBB2901E61200680933 /* Assets.xcassets */; };
 		AE824EBF2901E61200680933 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE824EBE2901E61200680933 /* Preview Assets.xcassets */; };
+		AE824EC62901E75F00680933 /* DataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE824EC52901E75F00680933 /* DataView.swift */; };
+		AE824EC82901E78800680933 /* DilutionSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE824EC72901E78800680933 /* DilutionSelectorView.swift */; };
+		AE824ECA2901E79800680933 /* MolecularMassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE824EC92901E79800680933 /* MolecularMassView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		AE824EB42901E61000680933 /* ChemistryUtilities.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChemistryUtilities.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE824EB72901E61000680933 /* ChemistryUtilitiesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChemistryUtilitiesApp.swift; sourceTree = "<group>"; };
-		AE824EB92901E61000680933 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		AE824EB92901E61000680933 /* UtilitySelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilitySelectorView.swift; sourceTree = "<group>"; };
 		AE824EBB2901E61200680933 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AE824EBE2901E61200680933 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		AE824EC52901E75F00680933 /* DataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataView.swift; sourceTree = "<group>"; };
+		AE824EC72901E78800680933 /* DilutionSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DilutionSelectorView.swift; sourceTree = "<group>"; };
+		AE824EC92901E79800680933 /* MolecularMassView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MolecularMassView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +58,10 @@
 			isa = PBXGroup;
 			children = (
 				AE824EB72901E61000680933 /* ChemistryUtilitiesApp.swift */,
-				AE824EB92901E61000680933 /* ContentView.swift */,
+				AE824EC52901E75F00680933 /* DataView.swift */,
+				AE824EC72901E78800680933 /* DilutionSelectorView.swift */,
+				AE824EC92901E79800680933 /* MolecularMassView.swift */,
+				AE824EB92901E61000680933 /* UtilitySelectorView.swift */,
 				AE824EBB2901E61200680933 /* Assets.xcassets */,
 				AE824EBD2901E61200680933 /* Preview Content */,
 			);
@@ -137,7 +146,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE824EBA2901E61000680933 /* ContentView.swift in Sources */,
+				AE824EC62901E75F00680933 /* DataView.swift in Sources */,
+				AE824ECA2901E79800680933 /* MolecularMassView.swift in Sources */,
+				AE824EC82901E78800680933 /* DilutionSelectorView.swift in Sources */,
+				AE824EBA2901E61000680933 /* UtilitySelectorView.swift in Sources */,
 				AE824EB82901E61000680933 /* ChemistryUtilitiesApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
