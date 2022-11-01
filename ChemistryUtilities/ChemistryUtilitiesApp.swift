@@ -12,25 +12,28 @@ class FuncState:ObservableObject {
     @Published var concentrationInitial:Double?;
     @Published var concentrationFinal:Double?;
     @Published var molecularWeight:Double?;
+    @Published var formula:String?;
     
     init(viewState:Int) {
         self.chemical = "";
-        self.molecularWeight = 0;
+        self.molecularWeight = -1;
         self.viewState = viewState;
         self.concentrationInitial = 0;
         self.concentrationFinal = 0;
         self.volumeInitial = 0;
         self.volumeFinal = 0;
+        self.formula = "";
     }
     
     func clearData() {
         self.chemical = "";
-        self.molecularWeight = 0;
+        self.molecularWeight = -1;
         self.viewState = viewState;
         self.concentrationInitial = 0;
         self.concentrationFinal = 0;
         self.volumeInitial = 0;
         self.volumeFinal = 0;
+        self.formula = "";
     }
 }
 

@@ -8,10 +8,13 @@ struct DataView: View {
             if (funcState.chemical != "") {
                 Text("Chemical: \(funcState.chemical!)").font(.caption).foregroundColor(.teal);
             }
+            if (funcState.formula != ""){
+                Text("Formula: \(funcState.formula!)").font(.caption).foregroundColor(.teal);
+            }
             if (funcState.utility != "" && funcState.viewState != 0) {
                 Text("Utility Selected: \(funcState.utility!)").font(.caption).foregroundColor(.teal);
             }
-            if (funcState.molecularWeight != 0) {
+            if (funcState.molecularWeight != -1) {
                 Text("Molecular Weight: \(funcState.molecularWeight!)").font(.caption).foregroundColor(.teal);
             }
             if (funcState.viewState != 0) {
