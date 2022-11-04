@@ -244,7 +244,7 @@ struct MolecularMassView: View {
                                       "Oganesson":"OgS"]
     
     init() {
-        self.element = "Hydrogen";
+        self.element = "";
         self.quantity = "";
         self.prefix = "";
         
@@ -252,8 +252,8 @@ struct MolecularMassView: View {
     }
     
     var body: some View {
-        let index = elements.index(forKey: element);
-        let atomicMass = elements[element];
+        // let index = elements.index(forKey: element);
+        // let atomicMass = elements[element];
         VStack {
             HStack {
                 Image("Molecular Mass").resizable().frame(width: 100, height: 100);
@@ -785,11 +785,16 @@ struct MolecularMassView: View {
                     }
                 }
             }
-            Text("Element Selected: \(element)").font(.caption).foregroundColor(.teal);
-            HStack {
-                Spacer();
-                Text("\(element) Quantity: ").font(.caption).foregroundColor(.teal);
-                TextField("Enter quantity of \(element)", text: $quantity).font(.caption).foregroundColor(.teal);
+            .font(.caption2);
+            if("\(element)" == "") {
+                Text("Please select an element").font(.largeTitle).foregroundColor(.teal);
+            }
+            else {
+                Text("Element Selected: \(element)").font(.body).foregroundColor(.teal);
+                HStack{
+                    Text("\(element) Quantity: ");
+                    TextField("Enter quantity of \(element)", text: $quantity);
+                }.font(.callout).foregroundColor(.teal);
             }
             HStack {
                 if((Double(quantity) != nil))
@@ -801,13 +806,13 @@ struct MolecularMassView: View {
                         funcState.molecularWeight = funcState.molecularWeight! + elements[element]! * Double(quantity)!;
                         funcState.formula = funcState.formula! + prefix + quantity;
                         quantity = "";
-                    }
+                    }.font(.title);
+                    Text("        ");
                 }
-                
                 Button("Reset MW"){
                     funcState.molecularWeight = -1;
                     funcState.formula = "";
-                }
+                }.font(.title);
                 //Text("\(elements[index!].key)");
                 //Text("\(atomicMass!)");
                 //Text("\(prefix)");

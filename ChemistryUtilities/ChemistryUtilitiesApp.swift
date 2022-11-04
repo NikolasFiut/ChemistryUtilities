@@ -44,11 +44,11 @@ struct ChemistryUtilitiesApp: App {
         WindowGroup {
             VStack {
                 if (funcState.viewState == 0) {
-                    UtilitySelectorView().environmentObject(funcState);
+                    UtilitySelectorView().environmentObject(funcState).scaledToFit();
                 } else if (funcState.viewState == 1) {
-                    DilutionSelectorView().environmentObject(funcState);
+                    DilutionSelectorView().environmentObject(funcState).scaledToFit();
                 } else if (funcState.viewState == 2) {
-                    MolecularMassView().environmentObject(funcState);
+                    MolecularMassView().environmentObject(funcState).scaledToFit();
                 }else {
                     Text("Invalid View State.");
                 }
