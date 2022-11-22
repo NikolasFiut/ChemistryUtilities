@@ -13,6 +13,8 @@ class FuncState:ObservableObject {
     @Published var concentrationFinal:Double?;
     @Published var molecularWeight:Double?;
     @Published var formula:String?;
+    @Published var width:CGFloat;
+    @Published var height:CGFloat;
     
     init(viewState:Int) {
         self.chemical = "";
@@ -23,6 +25,8 @@ class FuncState:ObservableObject {
         self.volumeInitial = 0;
         self.volumeFinal = 0;
         self.formula = "";
+        self.width = 0;
+        self.height = 0;
     }
     
     func clearData() {
@@ -39,6 +43,7 @@ class FuncState:ObservableObject {
 
 @main
 struct ChemistryUtilitiesApp: App {
+    //Replace with the single parameter init after Testing
     @ObservedObject var funcState:FuncState = FuncState(viewState: 0);
     var body: some Scene {
         WindowGroup {

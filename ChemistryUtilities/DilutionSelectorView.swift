@@ -6,74 +6,91 @@ struct DilutionSelectorView: View {
     @State var concentrationFinal:String;
     @State var volumeInitial:String;
     @State var volumeFinal:String;
+    @State var newError:Bool;
     
     init() {
         self.concentrationInitial = "";
         self.concentrationFinal = "";
         self.volumeInitial = "";
         self.volumeFinal = "";
+        self.newError = false;
     }
     
     var body: some View {
-        VStack {
-            DataView().environmentObject(funcState);
-            Image("Dilution").resizable().frame(width: 300, height: 300);
-            VStack {
-                HStack {
-                    Text("Initial Concentration: ").font(.caption).foregroundColor(.teal);
-                    if (funcState.concentrationInitial != 0) {
-                        Text("\(funcState.concentrationInitial!)").font(.caption).foregroundColor(.teal);
-                    } else {
-                        TextField("Enter initial concentration in M", text: $concentrationInitial).font(.caption).foregroundColor(.teal);
-                    }
-                }
-                HStack {
-                    Text("Final Concentration: ").font(.caption).foregroundColor(.teal);
-                    if (funcState.concentrationFinal != 0) {
-                        Text("\(funcState.concentrationFinal!)").font(.caption).foregroundColor(.teal);
-                    } else {
-                        TextField("Enter final concentration in M", text: $concentrationFinal).font(.caption).foregroundColor(.teal);
-                    }
-                }
-                HStack {
-                    Text("Initial Volume: ").font(.caption).foregroundColor(.teal);
-                    if (funcState.volumeInitial != 0) {
-                        Text("\(funcState.volumeInitial!)").font(.caption).foregroundColor(.teal);
-                    } else {
-                        TextField("Enter initial volume in L", text: $volumeInitial).font(.caption).foregroundColor(.teal);
-                    }
-                }
-                HStack {
-                    Text("Final Volume: ").font(.caption).foregroundColor(.teal);
-                    if (funcState.volumeFinal != 0) {
-                        Text("\(funcState.volumeFinal!)").font(.caption).foregroundColor(.teal);
-                    } else {
-                        TextField("Enter final volume in L", text: $volumeFinal).font(.caption).foregroundColor(.teal);
-                    }
-                }
-            }
-            if (funcState.concentrationInitial != 0 || funcState.concentrationFinal != 0 || funcState.volumeFinal != 0 || funcState.volumeInitial != 0) {
-                Button("Clear Dilution Values"){
-                    concentrationInitial = "";
-                    concentrationFinal = "";
-                    volumeFinal = "";
-                    volumeInitial = "";
-                    funcState.concentrationInitial = 0;
-                    funcState.concentrationFinal = 0;
-                    funcState.volumeFinal = 0;
-                    funcState.volumeInitial = 0;
+        GeometryReader{geo in
+            if(newError){
+                VStack{
+                    Text("ERROR: DATA MUST BE ENTERED FOR INITIAL CONCENTRATION AND INITIAL VOLUME AS WELL AS AT LEAST ONE OF THE FINAL VALUES TO CALCULATE THE DILUTION DATA.").font(.system(size: geo.size.width * 0.1)).foregroundColor(.red);
+                    Button("Reset Error"){
+                        newError = false;
+                    }.font(.system(size: geo.size.width * 0.1)).foregroundColor(.green);
                 }
             } else {
-                Button("Calculate Dilution"){
-                    funcState.concentrationInitial = Double(concentrationInitial);
-                    funcState.volumeInitial = Double(volumeInitial);
-                    if (concentrationFinal == "" && volumeFinal != "") {
-                        funcState.volumeFinal = Double(volumeFinal);
-                        funcState.concentrationFinal = funcState.concentrationInitial! * funcState.volumeInitial! / funcState.volumeFinal!;
-                    } else if (volumeFinal == "" && concentrationFinal != "") {
-                        funcState.concentrationFinal = Double(concentrationFinal);
-                        funcState.volumeFinal = funcState.concentrationInitial! * funcState.volumeInitial! / funcState.concentrationFinal!;
-                    } //Add failure to enter data clause here
+                VStack {
+                    DataView().environmentObject(funcState);
+                    Image("Dilution").resizable().frame(width: geo.size.width, height: geo.size.width);
+                    VStack {
+                        HStack {
+                            Text("Initial Concentration: ");
+                            if (funcState.concentrationInitial != 0) {
+                                Text("\(funcState.concentrationInitial!)");
+                            } else {
+                                TextField("Enter initial concentration in M", text: $concentrationInitial);
+                            }
+                        }
+                        HStack {
+                            Text("Final Concentration: ");
+                            if (funcState.concentrationFinal != 0) {
+                                Text("\(funcState.concentrationFinal!)");
+                            } else {
+                                TextField("Enter final concentration in M", text: $concentrationFinal);
+                            }
+                        }
+                        HStack {
+                            Text("Initial Volume: ");
+                            if (funcState.volumeInitial != 0) {
+                                Text("\(funcState.volumeInitial!)");
+                            } else {
+                                TextField("Enter initial volume in L", text: $volumeInitial);
+                            }
+                        }
+                        HStack {
+                            Text("Final Volume: ");
+                            if (funcState.volumeFinal != 0) {
+                                Text("\(funcState.volumeFinal!)");
+                            } else {
+                                TextField("Enter final volume in L", text: $volumeFinal);
+                            }
+                        }
+                    }.font(.system(size: geo.size.width * 0.0425)).foregroundColor(.teal)
+                    if (funcState.concentrationInitial != 0 || funcState.concentrationFinal != 0 || funcState.volumeFinal != 0 || funcState.volumeInitial != 0) {
+                        Button("Clear Dilution Values"){
+                            concentrationInitial = "";
+                            concentrationFinal = "";
+                            volumeFinal = "";
+                            volumeInitial = "";
+                            funcState.concentrationInitial = 0;
+                            funcState.concentrationFinal = 0;
+                            funcState.volumeFinal = 0;
+                            funcState.volumeInitial = 0;
+                        }.font(.system(size: geo.size.width * 0.1))
+                    } else {
+                        Button("Calculate Dilution"){
+                            if (concentrationFinal == "" && volumeFinal != "") {
+                                funcState.concentrationInitial = Double(concentrationInitial);
+                                funcState.volumeInitial = Double(volumeInitial);
+                                funcState.volumeFinal = Double(volumeFinal);
+                                funcState.concentrationFinal = funcState.concentrationInitial! * funcState.volumeInitial! / funcState.volumeFinal!;
+                            } else if (volumeFinal == "" && concentrationFinal != "") {
+                                funcState.concentrationInitial = Double(concentrationInitial);
+                                funcState.volumeInitial = Double(volumeInitial);
+                                funcState.concentrationFinal = Double(concentrationFinal);
+                                funcState.volumeFinal = funcState.concentrationInitial! * funcState.volumeInitial! / funcState.concentrationFinal!;
+                            } else {
+                                newError = true;
+                            }
+                        }.font(.system(size: geo.size.width * 0.1))
+                    }
                 }
             }
         }

@@ -40,37 +40,41 @@ struct UtilitySelectorView: View {
     }
     
     var body: some View {
-        VStack {
-            Image("Chem Icon").resizable().frame(width: 300, height: 300)
-            if (funcState.chemical == "") {
-                HStack {
-                    Text("Chemical:").font(.title).foregroundColor(.teal).bold();
-                    TextField("Enter Chemical Name", text: $chemical);
-                }
-            }
-            DataView().environmentObject(funcState);
-            HStack {
-                Text("Utility:").font(.title).foregroundColor(.teal).bold();
-                Picker(selection: $utility, label: Text("Utility")) {
-                    ForEach(Utility.allCases) {casename in
-                        Text(casename.rawValue.capitalized);
-                    }
-                }.pickerStyle(.segmented).colorMultiply(.teal)
-            }
-            Button("Confirm Selection") {
-                funcState.utility = utility.rawValue.capitalized;
+        GeometryReader{geo in
+            VStack {
+                Image("Chem Icon").resizable().frame(width: geo.size.width, height: geo.size.width)
                 if (funcState.chemical == "") {
-                    funcState.chemical = chemical;
+                    HStack {
+                        Text("Chemical:").font(.system(size: geo.size.width * 0.069)).foregroundColor(.teal).bold();
+                        TextField("Enter Chemical Name", text: $chemical).font(.system(size: geo.size.width * 0.069));
+                    }
                 }
-                if(utility.rawValue.capitalized == "Mw") {
-                    funcState.viewState = 2;
-                } else {
-                    funcState.viewState = 1;
+                DataView().environmentObject(funcState);
+                HStack {
+                    Text("Utility:").font(.system(size: geo.size.width * 0.069)).foregroundColor(.teal).bold();
+                    Picker(selection: $utility, label: Text("Utility")) {
+                        ForEach(Utility.allCases) {casename in
+                            Text(casename.rawValue.capitalized);
+                        }
+                    }.pickerStyle(.segmented).colorMultiply(.teal)
                 }
-            }.font(.largeTitle).foregroundColor(.teal);
-            if (hasData()) {
-                Button("Clear Data") {
-                    clearData();
+                Button("Confirm Selection") {
+                    funcState.width = geo.size.width;
+                    funcState.height = geo.size.height;
+                    funcState.utility = utility.rawValue.capitalized;
+                    if (funcState.chemical == "") {
+                        funcState.chemical = chemical;
+                    }
+                    if(utility.rawValue.capitalized == "Mw") {
+                        funcState.viewState = 2;
+                    } else {
+                        funcState.viewState = 1;
+                    }
+                }.font(.system(size: geo.size.width * 0.1)).foregroundColor(.teal);
+                if (hasData()) {
+                    Button("Clear Data") {
+                        clearData();
+                    }.font(.system(size: geo.size.width * 0.07))
                 }
             }
         }
