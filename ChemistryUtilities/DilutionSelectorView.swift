@@ -20,7 +20,7 @@ struct DilutionSelectorView: View {
         GeometryReader{geo in
             if(newError){
                 VStack{
-                    Text("ERROR: DATA MUST BE ENTERED FOR INITIAL CONCENTRATION AND INITIAL VOLUME AS WELL AS AT LEAST ONE OF THE FINAL VALUES TO CALCULATE THE DILUTION DATA.").font(.system(size: geo.size.width * 0.1)).foregroundColor(.red);
+                    Text("ERROR: DATA MUST BE ENTERED FOR INITIAL CONCENTRATION AND INITIAL VOLUME AS WELL AS AT LEAST ONE OF THE FINAL VALUES TO CALCULATE THE DILUTION DATA.").font(.system(size: geo.size.width * 0.09)).foregroundColor(.red);
                     Button("Reset Error"){
                         newError = false;
                     }.font(.system(size: geo.size.width * 0.1)).foregroundColor(.green);
@@ -33,7 +33,7 @@ struct DilutionSelectorView: View {
                         HStack {
                             Text("Initial Concentration: ");
                             if (funcState.concentrationInitial != 0) {
-                                Text("\(funcState.concentrationInitial!)");
+                                Text("\(funcState.concentrationInitial!.formatted(.number.precision(.fractionLength(2))))");
                             } else {
                                 TextField("Enter initial concentration in M", text: $concentrationInitial);
                             }
@@ -41,7 +41,7 @@ struct DilutionSelectorView: View {
                         HStack {
                             Text("Final Concentration: ");
                             if (funcState.concentrationFinal != 0) {
-                                Text("\(funcState.concentrationFinal!)");
+                                Text("\(funcState.concentrationFinal!.formatted(.number.precision(.fractionLength(2))))");
                             } else {
                                 TextField("Enter final concentration in M", text: $concentrationFinal);
                             }
@@ -49,7 +49,7 @@ struct DilutionSelectorView: View {
                         HStack {
                             Text("Initial Volume: ");
                             if (funcState.volumeInitial != 0) {
-                                Text("\(funcState.volumeInitial!)");
+                                Text("\(funcState.volumeInitial!.formatted(.number.precision(.fractionLength(2))))");
                             } else {
                                 TextField("Enter initial volume in L", text: $volumeInitial);
                             }
@@ -57,7 +57,7 @@ struct DilutionSelectorView: View {
                         HStack {
                             Text("Final Volume: ");
                             if (funcState.volumeFinal != 0) {
-                                Text("\(funcState.volumeFinal!)");
+                                Text("\(funcState.volumeFinal!.formatted(.number.precision(.fractionLength(2))))");
                             } else {
                                 TextField("Enter final volume in L", text: $volumeFinal);
                             }

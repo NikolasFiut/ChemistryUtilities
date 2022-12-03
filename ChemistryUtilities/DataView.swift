@@ -15,7 +15,7 @@ struct DataView: View {
                 Text("Utility Selected: \(funcState.utility!)");
             }
             if (funcState.molecularWeight != -1) {
-                Text("Molecular Weight: \(funcState.molecularWeight!)");
+                Text("Molecular Weight: \(funcState.molecularWeight!.formatted(.number.precision(.fractionLength(2))))");
             }
             if (funcState.viewState != 0) {
                 Button("Utility Home") {

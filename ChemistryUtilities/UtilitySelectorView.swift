@@ -24,7 +24,7 @@ struct UtilitySelectorView: View {
             return true;
         } else if (funcState.concentrationInitial != 0){
             return true;
-        } else if (funcState.molecularWeight != 0){
+        } else if (funcState.molecularWeight != -1){
             return true;
         } else if (funcState.volumeFinal != 0){
             return true;
@@ -42,6 +42,7 @@ struct UtilitySelectorView: View {
     var body: some View {
         GeometryReader{geo in
             VStack {
+                DataView().environmentObject(funcState);
                 Image("Chem Icon").resizable().frame(width: geo.size.width, height: geo.size.width)
                 if (funcState.chemical == "") {
                     HStack {
@@ -49,7 +50,6 @@ struct UtilitySelectorView: View {
                         TextField("Enter Chemical Name", text: $chemical).font(.system(size: geo.size.width * 0.069));
                     }
                 }
-                DataView().environmentObject(funcState);
                 HStack {
                     Text("Utility:").font(.system(size: geo.size.width * 0.069)).foregroundColor(.teal).bold();
                     Picker(selection: $utility, label: Text("Utility")) {
